@@ -1,2 +1,2 @@
-include(":app", ":scoco")
+include(":scoco")
 rootProject.name="Scoco"
