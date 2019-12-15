@@ -3,6 +3,14 @@ import org.gradle.kotlin.dsl.`kotlin-dsl`
 
 plugins {
     `kotlin-dsl`
+    `build-scan`
+}
+
+buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+
+    publishAlways()
 }
 
 buildscript {
