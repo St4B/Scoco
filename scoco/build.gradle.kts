@@ -89,8 +89,11 @@ publishing {
 }
 
 bintray {
-    project.rootDir
+
     val propertiesFile = file(project.rootDir.path + "/local.properties")
+
+    if (!propertiesFile.exists()) return@bintray
+
     val properties = Properties()
     properties.load(propertiesFile.inputStream())
 
