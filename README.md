@@ -3,11 +3,11 @@ Scope of a Coroutine, useful for unit-testing.
 
 We could say that is a light-weight version of https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test
 
-Espeacially, with this library we can test coroutines that exeute jobs based on time, by ignoring any possible delay or by controlling the time.
+Especially, with this library we can test coroutines that execute jobs based on time, by ignoring any possible delay or by controlling the time.
 
 ### Ignoring delays
 
-The simplest way to test coroutines, that contain delay, is just to ignore the delay. This is useful whenever there is not any need to orchestrate different jobs. What we actually want is to get a result of a long running task. In that case, we can just use the Coroutine Scope that is provided from this library and the jobs are going to be executed instantly.
+The simplest way to test coroutines, that contain delay, is just to ignore the delay. This is useful whenever there is not any need to orchestrate different jobs. What we actually want is to get a result of a long running task. In that case, we can just use the CoroutineScope that is provided from this library and the jobs are going to be executed instantly.
 
 ```Kotlin
 class Task(private val scope: CoroutineScope) { ... }
@@ -20,7 +20,7 @@ class TaskTest {
 
   @Test
   fun `should test task`() {
-      //Test task
+      //Test without caring about the delay
   }
 
 }
@@ -40,7 +40,7 @@ A ContinuationScheduler is responsible for scheduling jobs based on time that is
 
 #### Time Controllers
 
-A time controller provide us with the ability to manipulate time inside a Coroutine Scope. The time controllers that are provided for now are:
+A time controller provide us with the ability to manipulate time inside a CoroutineScope. The time controllers that are provided for now are:
 
 - ForwardTimeController, which respects time's linearity
 - BounceTimeController, which can create worm loops inside our coroutine world :p
@@ -64,7 +64,7 @@ class TaskTest {
   @Test
   fun `should test task`() {
       timeController.forwardBy(1000L)
-      //Verify that every went ok!
+      //Verify that task behaved as expected after moving forward by 1000 millis
   }
 
 }
@@ -75,7 +75,7 @@ Dowload
 
 ```groovy
 dependencies {
-  testImplementation "com.quadible:scoco:1.0.0-alpha
+  testImplementation "com.quadible:scoco:1.0.0-alpha"
 }
 ```
 
